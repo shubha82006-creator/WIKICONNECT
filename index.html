@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WikiConnect | Knowledge Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-grid"></div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <a href="#" class="logo">
+
+            <div class="logo-icon">
+                W
+            </div>
+
+            <div>
+                Wiki<span>Connect</span>
+            </div>
+
+        </a>
+
+        <nav>
+            <a href="#explorer">Explorer</a>
+            <a href="#workflow">How It Works</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="theme-indicator">
+            ☾
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero" id="explorer">
+
+        <div class="badge">
+            <span class="status-dot"></span>
+            WIKIMEDIA KNOWLEDGE EXPLORER
+        </div>
+
+        <h1>
+            Discover how
+            <br>
+            <span>knowledge connects.</span>
+        </h1>
+
+        <p class="hero-description">
+
+            Search an article and explore the people, places,
+            organizations, topics and related articles contained
+            in your Wikimedia dataset.
+
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-container">
+
+            <div class="search-icon">
+                🔎
+            </div>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search an article... e.g. ISRO"
+            >
+
+            <button id="searchButton">
+
+                Explore
+
+                <span>→</span>
+
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH SUGGESTIONS -->
+
+        <div id="suggestions"></div>
+
+
+        <!-- QUICK SEARCH -->
+
+        <div class="quick-search">
+
+            <span>Try:</span>
+
+            <button
+                class="quick-button"
+                data-query="Indian Space Research Organisation">
+                ISRO
+            </button>
+
+            <button
+                class="quick-button"
+                data-query="Chandrayaan">
+                Chandrayaan
+            </button>
+
+            <button
+                class="quick-button"
+                data-query="NASA">
+                NASA
+            </button>
+
+            <label class="upload-button">
+
+                Load CSV
+
+                <input
+                    type="file"
+                    id="csvInput"
+                    accept=".csv"
+                >
+
+            </label>
+
+        </div>
+
+
+        <div id="datasetStatus" class="dataset-status">
+
+            Loading dataset...
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN WORKSPACE -->
+
+    <section class="workspace">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-title">
+                EXPLORE
+            </div>
+
+
+            <button
+                class="sidebar-item active"
+                data-filter="all">
+
+                <span>⌘</span>
+
+                All Connections
+
+                <b id="allCount">0</b>
+
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                data-filter="people">
+
+                <span>◎</span>
+
+                People
+
+                <b id="peopleCount">0</b>
+
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                data-filter="organizations">
+
+                <span>▣</span>
+
+                Organizations
+
+                <b id="organizationCount">0</b>
+
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                data-filter="places">
+
+                <span>⌖</span>
+
+                Places
+
+                <b id="placeCount">0</b>
+
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                data-filter="topics">
+
+                <span>◇</span>
+
+                Topics
+
+                <b id="topicCount">0</b>
+
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                data-filter="related">
+
+                <span>↗</span>
+
+                Related Articles
+
+                <b id="relatedCount">0</b>
+
+            </button>
+
+
+            <div class="sidebar-info">
+
+                <div class="orbit">
+                    W
+                </div>
+
+                <strong>
+                    Dataset-first
+                </strong>
+
+                <p>
+                    Connections shown here are taken
+                    from the loaded dataset.
+                </p>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENT -->
+
+        <main class="content">
+
+
+            <!-- EMPTY -->
+
+            <div id="emptyState" class="empty-state">
+
+                <div class="empty-logo">
+                    W
+                </div>
+
+                <h2>
+                    Start exploring
+                </h2>
+
+                <p>
+                    Search for an article above to discover
+                    its structured knowledge and connections.
+                </p>
+
+            </div>
+
+
+            <!-- NOT FOUND -->
+
+            <div
+                id="notFound"
+                class="empty-state hidden">
+
+                <div class="empty-logo">
+                    ?
+                </div>
+
+                <h2>
+                    Article not found
+                </h2>
+
+                <p>
+                    Try another search term or load your
+                    Wikimedia CSV dataset.
+                </p>
+
+            </div>
+
+
+            <!-- ARTICLE -->
+
+            <div
+                id="articleView"
+                class="hidden">
+
+
+                <!-- ARTICLE HEADER -->
+
+                <div class="article-header">
+
+                    <div>
+
+                        <div class="section-label">
+                            ARTICLE
+                        </div>
+
+                        <h2 id="articleTitle">
+                            Article
+                        </h2>
+
+                        <p id="articleDescription"></p>
+
+                    </div>
+
+
+                    <a
+                        id="sourceButton"
+                        class="source-button"
+                        target="_blank">
+
+                        Open Source ↗
+
+                    </a>
+
+                </div>
+
+
+                <!-- SUMMARY -->
+
+                <div class="summary-card">
+
+                    <div class="section-label">
+                        OVERVIEW
+                    </div>
+
+                    <p id="articleSummary">
+                    </p>
+
+                </div>
+
+
+                <!-- INFORMATION CARDS -->
+
+                <div
+                    id="cards"
+                    class="cards-grid">
+                </div>
+
+
+                <!-- GRAPH -->
+
+                <section class="graph-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <div class="section-label">
+                                RELATIONSHIP MAP
+                            </div>
+
+                            <h3>
+                                Knowledge Connections
+                            </h3>
+
+                        </div>
+
+                        <span>
+                            Direct relationships from dataset
+                        </span>
+
+                    </div>
+
+
+                    <div id="graph" class="graph">
+
+                    </div>
+
+                </section>
+
+
+                <!-- RELATED ARTICLES -->
+
+                <section class="related-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <div class="section-label">
+                                NAVIGATE
+                            </div>
+
+                            <h3>
+                                Related Articles
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="relatedList"
+                        class="related-list">
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <!-- WORKFLOW -->
+
+    <section
+        class="workflow"
+        id="workflow">
+
+        <div class="center-heading">
+
+            <div class="section-label">
+                PROJECT WORKFLOW
+            </div>
+
+            <h2>
+                From dataset to discovery
+            </h2>
+
+        </div>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <span>
+                    01
+                </span>
+
+                <h3>
+                    Search
+                </h3>
+
+                <p>
+                    Enter an article or topic.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <span>
+                    02
+                </span>
+
+                <h3>
+                    Retrieve
+                </h3>
+
+                <p>
+                    Find the matching dataset record.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <span>
+                    03
+                </span>
+
+                <h3>
+                    Organize
+                </h3>
+
+                <p>
+                    Separate available relationships.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <span>
+                    04
+                </span>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <p>
+                    Navigate through connected articles.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section
+        class="about"
+        id="about">
+
+        <div>
+
+            <div class="section-label">
+                ABOUT
+            </div>
+
+            <h2>
+                WikiConnect
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            WikiConnect is an experimental educational
+            knowledge exploration platform built for the
+            WikiKnowledge Explorer challenge. It organizes
+            relationships available in the supplied Wikimedia
+            dataset into an interactive interface.
+
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>
+            WikiConnect
+        </strong>
+
+        <span>
+            Wikimedia Open Source Day Project
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
