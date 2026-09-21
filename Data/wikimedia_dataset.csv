@@ -1,11 +1,11 @@
-title,summary,people,organizations,places,topics,related_articles
-Indian Space Research Organisation,"India's national space agency responsible for space exploration and satellite development.","Vikram Sarabhai;S. Somanath;A. P. J. Abdul Kalam","Department of Space;ISRO","Bengaluru;Sriharikota;India","Space;Satellites;Launch Vehicles","Chandrayaan;PSLV;Gaganyaan"
-Chandrayaan,"A series of lunar exploration missions developed by ISRO.","Vikram Sarabhai","ISRO","Moon;India","Lunar Mission;Space Exploration","Indian Space Research Organisation;PSLV"
-PSLV,"Polar Satellite Launch Vehicle used by ISRO to launch satellites into orbit.","A. E. Muthunayagam","ISRO","Sriharikota;India","Launch Vehicle;Satellite","Indian Space Research Organisation;Chandrayaan"
-Gaganyaan,"India's human spaceflight mission aiming to send astronauts into space.","S. Somanath","ISRO","India","Human Spaceflight;Astronauts","Indian Space Research Organisation;PSLV"
-NASA,"The National Aeronautics and Space Administration is the United States space agency.","Neil Armstrong","NASA","Washington, D.C.;United States","Space;Mars;Moon","Apollo program;Artemis program"
-Bengaluru,"Capital city of Karnataka and headquarters of ISRO.","Kempegowda","ISRO","Karnataka;India","Technology;City","Indian Space Research Organisation"
-Taj Mahal,"A white marble mausoleum located in Agra, India.","Shah Jahan","UNESCO","Agra;India","Monument;Architecture","Agra;Mughal Empire"
-Agra,"Historic city in Uttar Pradesh famous for the Taj Mahal.","Shah Jahan","UNESCO","Uttar Pradesh;India","Tourism;History","Taj Mahal"
-Mughal Empire,"An early modern empire that ruled much of the Indian subcontinent.","Akbar;Shah Jahan","Mughal Empire","India","History;Empire","Taj Mahal"
-India,"A country in South Asia with diverse geography, culture, and scientific achievements.","A. P. J. Abdul Kalam","ISRO","South Asia","Country;Democracy","Indian Space Research Organisation;Bengaluru"
+name,description,abstract,url,identifier,in_language
+NASA,Independent agency of the United States federal government responsible for the civilian space program.,"The National Aeronautics and Space Administration (NASA) is an independent agency of the United States federal government responsible for the civilian space program, aeronautics research, and space research.",https://en.wikipedia.org/wiki/NASA,NASA,English
+Indian Space Research Organisation,India's national space agency.,"The Indian Space Research Organisation is India's national space agency, responsible for space science, exploration and applications.",https://en.wikipedia.org/wiki/Indian_Space_Research_Organisation,ISRO,English
+Artificial intelligence,Intelligence demonstrated by machines.,Artificial intelligence is the capability of computational systems to perform tasks commonly associated with human intelligence.,https://en.wikipedia.org/wiki/Artificial_intelligence,AI,English
+Machine learning,A field of artificial intelligence concerned with learning from data.,Machine learning is a field of study in artificial intelligence concerned with the development of statistical algorithms that can learn from data and generalize to unseen data.,https://en.wikipedia.org/wiki/Machine_learning,ML,English
+Computer science,Study of computation and information.,"Computer science is the study of computation, information, and automation.",https://en.wikipedia.org/wiki/Computer_science,CS,English
+Python,High-level programming language.,"Python is a high-level, general-purpose programming language.",https://en.wikipedia.org/wiki/Python_(programming_language),PYTHON,English
+India,Country in South Asia.,India is a country in South Asia and is the world's most populous country.,https://en.wikipedia.org/wiki/India,INDIA,English
+Internet,Global system of interconnected computer networks.,The Internet is the global system of interconnected computer networks that uses the Internet protocol suite to communicate between networks and devices.,https://en.wikipedia.org/wiki/Internet,INTERNET,English
+Robotics,Branch of engineering and computer science involving robots.,"Robotics is an interdisciplinary field involving the design, construction, operation, and use of robots.",https://en.wikipedia.org/wiki/Robotics,ROBOTICS,English
+Cybersecurity,Practice of protecting computer systems and networks.,"Cybersecurity is the practice of protecting computer systems, networks, applications, devices, and data from digital attacks.",https://en.wikipedia.org/wiki/Computer_security,CYBERSECURITY,English

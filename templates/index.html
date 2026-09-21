@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WikiConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <h1>WikiConnect</h1>
+            <p>Explore. Learn. Connect.</p>
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+
+            <h2>Explore Wikipedia Knowledge</h2>
+
+            <p>
+                Search for a topic and discover information,
+                connections and quiz questions.
+            </p>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search Wikipedia topic..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="searchButton"
+                    onclick="searchArticle()">
+                    🔍 Search
+                </button>
+
+            </div>
+
+            <!-- QUICK SEARCH -->
+            <div class="quick-search">
+
+                <span>Try:</span>
+
+                <button onclick="quickSearch('NASA')">
+                    NASA
+                </button>
+
+                <button onclick="quickSearch('Artificial intelligence')">
+                    Artificial Intelligence
+                </button>
+
+                <button onclick="quickSearch('Machine learning')">
+                    Machine Learning
+                </button>
+
+                <button onclick="quickSearch('Wikipedia')">
+                    Wikipedia
+                </button>
+
+            </div>
+
+            <div id="datasetStatus">
+                Connecting to Wikimedia dataset...
+            </div>
+
+        </section>
+
+
+        <!-- LOADING -->
+        <section id="loading" style="display:none;">
+
+            <h3>Processing...</h3>
+
+            <p>
+                Searching the Wikimedia dataset.
+            </p>
+
+        </section>
+
+
+        <!-- EMPTY STATE -->
+        <section id="emptyState">
+
+            <h2>Welcome to WikiConnect 👋</h2>
+
+            <p>
+                Enter a topic above to explore Wikipedia
+                information and generate a quiz.
+            </p>
+
+        </section>
+
+
+        <!-- NOT FOUND -->
+        <section id="notFound" style="display:none;">
+
+            <h2>Article Not Found</h2>
+
+            <p id="notFoundMessage">
+                No matching article was found.
+            </p>
+
+        </section>
+
+
+        <!-- ARTICLE -->
+        <section id="articleView" style="display:none;">
+
+            <!-- ARTICLE HEADER -->
+            <div class="article-header">
+
+                <h1 id="articleTitle">
+                    Article Title
+                </h1>
+
+                <p id="articleDescription">
+                    Article description
+                </p>
+
+                <a
+                    id="sourceButton"
+                    href="#"
+                    target="_blank">
+                    View Wikipedia Source
+                </a>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="card">
+
+                <h2>📖 Summary</h2>
+
+                <p id="articleSummary">
+                    Article summary will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- ARTICLE INFORMATION -->
+            <div class="card-grid" id="cards">
+
+                <div class="card">
+
+                    <h3>🌐 Language</h3>
+
+                    <p id="articleLanguage">
+                        -
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>📚 Dataset</h3>
+
+                    <p>
+                        Wikimedia Structured Contents
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>🤖 Processing</h3>
+
+                    <p>
+                        Python + Pandas
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUIZ -->
+            <div class="card quiz-card">
+
+                <h2>🧠 Knowledge Quiz</h2>
+
+                <p id="quizQuestion">
+                    Quiz question will appear here.
+                </p>
+
+                <div id="quizAnswer"></div>
+
+            </div>
+
+
+            <!-- RELATED ARTICLES -->
+            <div class="card">
+
+                <h2>🔗 Related Articles</h2>
+
+                <div id="relatedList">
+                    No related articles found.
+                </div>
+
+            </div>
+
+
+            <!-- WORKFLOW -->
+            <div class="card">
+
+                <h2>⚙️ WikiConnect Workflow</h2>
+
+                <div class="workflow">
+
+                    <div>
+                        <strong>1. USER INPUT</strong>
+                        <p>Topic entered by user</p>
+                    </div>
+
+                    <div>
+                        <strong>2. WIKIMEDIA DATASET</strong>
+                        <p>Retrieve article information</p>
+                    </div>
+
+                    <div>
+                        <strong>3. PROCESS DATA</strong>
+                        <p>Python and Pandas processing</p>
+                    </div>
+
+                    <div>
+                        <strong>4. GENERATE RESULT</strong>
+                        <p>Create article and quiz</p>
+                    </div>
+
+                    <div>
+                        <strong>5. DISPLAY RESULT</strong>
+                        <p>Show information to user</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            WikiConnect | Wikimedia Structured Contents
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
