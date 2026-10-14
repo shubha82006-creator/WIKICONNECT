@@ -1,10 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080d1b">
 
-    <title>WikiConnect</title>
+    <title>WikiConnect | Explore Knowledge</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
@@ -12,265 +18,322 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+<header class="header">
+    <a href="/" class="brand">
+        <span class="brand-icon">W</span>
+        <span>
+            <strong>WikiConnect</strong>
+            <small>Knowledge Explorer</small>
+        </span>
+    </a>
 
-        <div class="logo">
-            <h1>WikiConnect</h1>
-            <p>Explore. Learn. Connect.</p>
-        </div>
+    <nav class="nav-links">
+        <a href="#explore">Explore</a>
+        <a href="#articleView">Knowledge</a>
+        <a href="#workflow">How it works</a>
+    </nav>
 
-    </header>
+    <div class="header-badge">
+        <span class="status-dot"></span>
+        Wikimedia Explorer
+    </div>
+</header>
 
+<main class="container">
 
-    <!-- MAIN -->
-    <main class="container">
+    <section class="hero" id="explore">
 
-        <!-- SEARCH SECTION -->
-        <section class="search-section">
+        <div class="hero-content">
+            <div class="eyebrow">
+                <span>✦</span> YOUR GATEWAY TO KNOWLEDGE
+            </div>
 
-            <h2>Explore Wikipedia Knowledge</h2>
+            <h1>
+                Curiosity leads to<br>
+                <span>discovery.</span>
+            </h1>
 
-            <p>
-                Search for a topic and discover information,
-                connections and quiz questions.
+            <p class="hero-description">
+                Explore Wikipedia topics, discover meaningful connections,
+                and test your knowledge — all in one place.
             </p>
 
             <div class="search-box">
+                <span class="search-icon">⌕</span>
 
                 <input
                     type="text"
                     id="searchInput"
-                    placeholder="Search Wikipedia topic..."
+                    placeholder="Search any topic, person, or idea..."
                     autocomplete="off"
+                    aria-label="Search Wikipedia topic"
                 >
 
-                <button
-                    id="searchButton"
-                    onclick="searchArticle()">
-                    🔍 Search
+                <button id="searchButton" onclick="searchArticle()">
+                    Explore <span>↗</span>
                 </button>
-
             </div>
 
-            <!-- QUICK SEARCH -->
             <div class="quick-search">
+                <span class="try-label">TRENDING TOPICS</span>
 
-                <span>Try:</span>
-
-                <button onclick="quickSearch('NASA')">
-                    NASA
-                </button>
-
-                <button onclick="quickSearch('Artificial intelligence')">
-                    Artificial Intelligence
-                </button>
-
-                <button onclick="quickSearch('Machine learning')">
-                    Machine Learning
-                </button>
-
-                <button onclick="quickSearch('Wikipedia')">
-                    Wikipedia
-                </button>
-
+                <button onclick="quickSearch('NASA')">🚀 NASA</button>
+                <button onclick="quickSearch('Artificial intelligence')">✧ AI</button>
+                <button onclick="quickSearch('Machine learning')">◈ Machine Learning</button>
+                <button onclick="quickSearch('Wikipedia')">🌐 Wikipedia</button>
             </div>
 
-            <div id="datasetStatus">
-                Connecting to Wikimedia dataset...
+            <div class="dataset-status">
+                <span class="status-dot"></span>
+                <span id="datasetStatus">Connecting to Wikimedia dataset...</span>
+            </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
+
+            <div class="knowledge-core">
+                <span>W</span>
             </div>
 
-        </section>
-
-
-        <!-- LOADING -->
-        <section id="loading" style="display:none;">
-
-            <h3>Processing...</h3>
-
-            <p>
-                Searching the Wikimedia dataset.
-            </p>
-
-        </section>
-
-
-        <!-- EMPTY STATE -->
-        <section id="emptyState">
-
-            <h2>Welcome to WikiConnect 👋</h2>
-
-            <p>
-                Enter a topic above to explore Wikipedia
-                information and generate a quiz.
-            </p>
-
-        </section>
-
-
-        <!-- NOT FOUND -->
-        <section id="notFound" style="display:none;">
-
-            <h2>Article Not Found</h2>
-
-            <p id="notFoundMessage">
-                No matching article was found.
-            </p>
-
-        </section>
-
-
-        <!-- ARTICLE -->
-        <section id="articleView" style="display:none;">
-
-            <!-- ARTICLE HEADER -->
-            <div class="article-header">
-
-                <h1 id="articleTitle">
-                    Article Title
-                </h1>
-
-                <p id="articleDescription">
-                    Article description
-                </p>
-
-                <a
-                    id="sourceButton"
-                    href="#"
-                    target="_blank">
-                    View Wikipedia Source
-                </a>
-
+            <div class="float-card float-top">
+                <span class="float-icon purple">✦</span>
+                <span><strong>Explore</strong><small>Discover ideas</small></span>
             </div>
 
-
-            <!-- SUMMARY -->
-            <div class="card">
-
-                <h2>📖 Summary</h2>
-
-                <p id="articleSummary">
-                    Article summary will appear here.
-                </p>
-
+            <div class="float-card float-right">
+                <span class="float-icon blue">⌘</span>
+                <span><strong>Connect</strong><small>Related knowledge</small></span>
             </div>
 
-
-            <!-- ARTICLE INFORMATION -->
-            <div class="card-grid" id="cards">
-
-                <div class="card">
-
-                    <h3>🌐 Language</h3>
-
-                    <p id="articleLanguage">
-                        -
-                    </p>
-
-                </div>
-
-                <div class="card">
-
-                    <h3>📚 Dataset</h3>
-
-                    <p>
-                        Wikimedia Structured Contents
-                    </p>
-
-                </div>
-
-                <div class="card">
-
-                    <h3>🤖 Processing</h3>
-
-                    <p>
-                        Python + Pandas
-                    </p>
-
-                </div>
-
+            <div class="float-card float-bottom">
+                <span class="float-icon green">✓</span>
+                <span><strong>Learn</strong><small>Test your knowledge</small></span>
             </div>
+        </div>
 
+    </section>
 
-            <!-- QUIZ -->
-            <div class="card quiz-card">
-
-                <h2>🧠 Knowledge Quiz</h2>
-
-                <p id="quizQuestion">
-                    Quiz question will appear here.
-                </p>
-
-                <div id="quizAnswer"></div>
-
+    <section class="intro-strip">
+        <div>
+            <span class="strip-number">01</span>
+            <div>
+                <strong>Explore</strong>
+                <p>Search for any topic</p>
             </div>
+        </div>
 
+        <span class="strip-arrow">→</span>
 
-            <!-- RELATED ARTICLES -->
-            <div class="card">
-
-                <h2>🔗 Related Articles</h2>
-
-                <div id="relatedList">
-                    No related articles found.
-                </div>
-
+        <div>
+            <span class="strip-number">02</span>
+            <div>
+                <strong>Discover</strong>
+                <p>Understand the key facts</p>
             </div>
+        </div>
 
+        <span class="strip-arrow">→</span>
 
-            <!-- WORKFLOW -->
-            <div class="card">
-
-                <h2>⚙️ WikiConnect Workflow</h2>
-
-                <div class="workflow">
-
-                    <div>
-                        <strong>1. USER INPUT</strong>
-                        <p>Topic entered by user</p>
-                    </div>
-
-                    <div>
-                        <strong>2. WIKIMEDIA DATASET</strong>
-                        <p>Retrieve article information</p>
-                    </div>
-
-                    <div>
-                        <strong>3. PROCESS DATA</strong>
-                        <p>Python and Pandas processing</p>
-                    </div>
-
-                    <div>
-                        <strong>4. GENERATE RESULT</strong>
-                        <p>Create article and quiz</p>
-                    </div>
-
-                    <div>
-                        <strong>5. DISPLAY RESULT</strong>
-                        <p>Show information to user</p>
-                    </div>
-
-                </div>
-
+        <div>
+            <span class="strip-number">03</span>
+            <div>
+                <strong>Challenge yourself</strong>
+                <p>Answer knowledge questions</p>
             </div>
+        </div>
+    </section>
 
-        </section>
+    <section id="loading" class="state-panel" style="display:none;">
+        <div class="loader"></div>
+        <h3>Exploring the knowledge universe...</h3>
+        <p>Finding and processing relevant article information.</p>
+    </section>
 
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer>
-
+    <section id="emptyState" class="welcome-panel">
+        <div class="welcome-symbol">✳</div>
+        <span class="section-kicker">YOUR NEXT DISCOVERY</span>
+        <h2>Where will curiosity take you?</h2>
         <p>
-            WikiConnect | Wikimedia Structured Contents
+            Start with a topic above to reveal its summary,
+            explore related articles, and generate a knowledge quiz.
         </p>
+    </section>
 
-    </footer>
+    <section id="notFound" class="state-panel error-panel" style="display:none;">
+        <div class="welcome-symbol">⌕</div>
+        <h2>We couldn't find that topic</h2>
+        <p id="notFoundMessage">No matching article was found.</p>
+        <p>Try a different keyword or one of the suggested topics.</p>
+    </section>
 
+    <section id="articleView" style="display:none;">
 
-    <!-- JAVASCRIPT -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">KNOWLEDGE BASE</span>
+                <h2>Your discovery</h2>
+                <p>Everything you need to understand the topic.</p>
+            </div>
+            <span class="live-badge"><span class="status-dot"></span> Article loaded</span>
+        </div>
+
+        <div class="article-banner">
+            <div class="article-banner-content">
+                <span class="article-label">WIKIPEDIA ARTICLE</span>
+                <h1 id="articleTitle">Article Title</h1>
+                <p id="articleDescription">Article description</p>
+
+                <a id="sourceButton" href="#" target="_blank"
+                   rel="noopener noreferrer" class="source-button">
+                    Read original article <span>↗</span>
+                </a>
+            </div>
+
+            <div class="article-decoration" aria-hidden="true">W</div>
+        </div>
+
+        <div class="content-grid">
+
+            <div class="main-column">
+                <article class="card summary-card">
+                    <div class="card-heading">
+                        <span class="card-icon purple">✧</span>
+                        <div>
+                            <h2>Article overview</h2>
+                            <p>A concise introduction to your topic</p>
+                        </div>
+                    </div>
+
+                    <p id="articleSummary" class="summary-text">
+                        Article summary will appear here.
+                    </p>
+                </article>
+
+                <article class="card quiz-card">
+                    <div class="card-heading">
+                        <span class="card-icon blue">?</span>
+                        <div>
+                            <h2>Knowledge check</h2>
+                            <p>See what you've learned</p>
+                        </div>
+                        <span class="quiz-tag">QUICK QUIZ</span>
+                    </div>
+
+                    <div id="quizQuestion" class="quiz-question">
+                        Quiz question will appear here.
+                    </div>
+
+                    <div id="quizAnswer"></div>
+                </article>
+
+                <article class="card related-card">
+                    <div class="card-heading">
+                        <span class="card-icon green">↗</span>
+                        <div>
+                            <h2>Related discoveries</h2>
+                            <p>Continue exploring connected topics</p>
+                        </div>
+                    </div>
+
+                    <div id="relatedList" class="related-list">
+                        No related articles found.
+                    </div>
+                </article>
+            </div>
+
+            <aside class="side-column">
+                <article class="card details-card">
+                    <span class="section-kicker">ARTICLE DETAILS</span>
+                    <h3>At a glance</h3>
+
+                    <div class="detail-row">
+                        <span>🌐 Language</span>
+                        <strong id="articleLanguage">-</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>📚 Source</span>
+                        <strong>Wikimedia</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>⚙ Processing</span>
+                        <strong>Python + Pandas</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>🧠 Learning</span>
+                        <strong>Interactive quiz</strong>
+                    </div>
+                </article>
+
+                <article class="card workflow-card" id="workflow">
+                    <span class="section-kicker">BEHIND THE SCENES</span>
+                    <h3>How it works</h3>
+
+                    <div class="workflow">
+                        <div class="workflow-step">
+                            <span class="step-number">01</span>
+                            <div>
+                                <strong>User input</strong>
+                                <p>Choose a topic</p>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <span class="step-number">02</span>
+                            <div>
+                                <strong>Data retrieval</strong>
+                                <p>Find article information</p>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <span class="step-number">03</span>
+                            <div>
+                                <strong>Data processing</strong>
+                                <p>Prepare relevant content</p>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <span class="step-number">04</span>
+                            <div>
+                                <strong>Quiz generation</strong>
+                                <p>Prepare knowledge checks</p>
+                            </div>
+                        </div>
+
+                        <div class="workflow-step">
+                            <span class="step-number">05</span>
+                            <div>
+                                <strong>Results</strong>
+                                <p>Display your discovery</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </aside>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <a href="/" class="footer-brand">
+        <span class="brand-icon">W</span>
+        WikiConnect
+    </a>
+
+    <p>Built to make knowledge easier to explore.</p>
+
+    <span class="footer-note">Powered by Wikimedia content</span>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
