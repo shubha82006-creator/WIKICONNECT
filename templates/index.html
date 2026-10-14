@@ -6,24 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#080d1b">
 
-    <title>WikiConnect | Explore Knowledge</title>
+    <title>WikiConnect | Knowledge Explorer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 
 <body>
 
 <header class="header">
-    <a href="/" class="brand">
+    <a href="#" class="brand">
         <span class="brand-icon">W</span>
         <span>
             <strong>WikiConnect</strong>
-            <small>Knowledge Explorer</small>
+            <small>KNOWLEDGE EXPLORER</small>
         </span>
     </a>
 
@@ -34,19 +32,16 @@
     </nav>
 
     <div class="header-badge">
-        <span class="status-dot"></span>
-        Wikimedia Explorer
+        <span class="status-dot"></span> Knowledge Hub
     </div>
 </header>
 
 <main class="container">
 
     <section class="hero" id="explore">
-
         <div class="hero-content">
-            <div class="eyebrow">
-                <span>✦</span> YOUR GATEWAY TO KNOWLEDGE
-            </div>
+
+            <div class="eyebrow">✦ YOUR GATEWAY TO KNOWLEDGE</div>
 
             <h1>
                 Curiosity leads to<br>
@@ -54,38 +49,38 @@
             </h1>
 
             <p class="hero-description">
-                Explore Wikipedia topics, discover meaningful connections,
-                and test your knowledge — all in one place.
+                Explore Wikipedia topics, discover connections,
+                understand new ideas, and test your knowledge
+                with WikiConnect.
             </p>
 
-            <div class="search-box">
+            <form class="search-box" id="searchForm">
                 <span class="search-icon">⌕</span>
 
                 <input
                     type="text"
                     id="searchInput"
-                    placeholder="Search any topic, person, or idea..."
+                    placeholder="Search a topic, person, or idea..."
                     autocomplete="off"
-                    aria-label="Search Wikipedia topic"
+                    aria-label="Search topic"
                 >
 
-                <button id="searchButton" onclick="searchArticle()">
-                    Explore <span>↗</span>
+                <button id="searchButton" type="submit">
+                    Explore ↗
                 </button>
-            </div>
+            </form>
 
             <div class="quick-search">
-                <span class="try-label">TRENDING TOPICS</span>
-
-                <button onclick="quickSearch('NASA')">🚀 NASA</button>
-                <button onclick="quickSearch('Artificial intelligence')">✧ AI</button>
-                <button onclick="quickSearch('Machine learning')">◈ Machine Learning</button>
-                <button onclick="quickSearch('Wikipedia')">🌐 Wikipedia</button>
+                <span class="try-label">QUICK EXPLORE</span>
+                <button type="button" onclick="quickSearch('NASA')">🚀 NASA</button>
+                <button type="button" onclick="quickSearch('Artificial intelligence')">✦ AI</button>
+                <button type="button" onclick="quickSearch('Machine learning')">◈ Machine Learning</button>
+                <button type="button" onclick="quickSearch('Wikipedia')">🌐 Wikipedia</button>
             </div>
 
             <div class="dataset-status">
                 <span class="status-dot"></span>
-                <span id="datasetStatus">Connecting to Wikimedia dataset...</span>
+                <span id="datasetStatus">Ready to explore knowledge</span>
             </div>
         </div>
 
@@ -94,9 +89,7 @@
             <div class="orbit orbit-two"></div>
             <div class="orbit orbit-three"></div>
 
-            <div class="knowledge-core">
-                <span>W</span>
-            </div>
+            <div class="knowledge-core"><span>W</span></div>
 
             <div class="float-card float-top">
                 <span class="float-icon purple">✦</span>
@@ -113,43 +106,29 @@
                 <span><strong>Learn</strong><small>Test your knowledge</small></span>
             </div>
         </div>
-
     </section>
 
     <section class="intro-strip">
         <div>
             <span class="strip-number">01</span>
-            <div>
-                <strong>Explore</strong>
-                <p>Search for any topic</p>
-            </div>
+            <div><strong>Explore</strong><p>Search for a topic</p></div>
         </div>
-
         <span class="strip-arrow">→</span>
-
         <div>
             <span class="strip-number">02</span>
-            <div>
-                <strong>Discover</strong>
-                <p>Understand the key facts</p>
-            </div>
+            <div><strong>Discover</strong><p>Understand key facts</p></div>
         </div>
-
         <span class="strip-arrow">→</span>
-
         <div>
             <span class="strip-number">03</span>
-            <div>
-                <strong>Challenge yourself</strong>
-                <p>Answer knowledge questions</p>
-            </div>
+            <div><strong>Learn</strong><p>Test your knowledge</p></div>
         </div>
     </section>
 
-    <section id="loading" class="state-panel" style="display:none;">
+    <section id="loading" class="state-panel" style="display:none">
         <div class="loader"></div>
-        <h3>Exploring the knowledge universe...</h3>
-        <p>Finding and processing relevant article information.</p>
+        <h3>Exploring knowledge...</h3>
+        <p>Please wait while your topic is processed.</p>
     </section>
 
     <section id="emptyState" class="welcome-panel">
@@ -157,27 +136,28 @@
         <span class="section-kicker">YOUR NEXT DISCOVERY</span>
         <h2>Where will curiosity take you?</h2>
         <p>
-            Start with a topic above to reveal its summary,
-            explore related articles, and generate a knowledge quiz.
+            Search for a topic above to discover its summary,
+            explore related articles, and try a knowledge quiz.
         </p>
     </section>
 
-    <section id="notFound" class="state-panel error-panel" style="display:none;">
+    <section id="notFound" class="state-panel error-panel" style="display:none">
         <div class="welcome-symbol">⌕</div>
-        <h2>We couldn't find that topic</h2>
+        <h2>Topic not found</h2>
         <p id="notFoundMessage">No matching article was found.</p>
-        <p>Try a different keyword or one of the suggested topics.</p>
     </section>
 
-    <section id="articleView" style="display:none;">
+    <section id="articleView" style="display:none">
 
         <div class="section-heading">
             <div>
                 <span class="section-kicker">KNOWLEDGE BASE</span>
                 <h2>Your discovery</h2>
-                <p>Everything you need to understand the topic.</p>
+                <p>Explore your selected topic in detail.</p>
             </div>
-            <span class="live-badge"><span class="status-dot"></span> Article loaded</span>
+            <span class="live-badge">
+                <span class="status-dot"></span> Article loaded
+            </span>
         </div>
 
         <div class="article-banner">
@@ -188,16 +168,16 @@
 
                 <a id="sourceButton" href="#" target="_blank"
                    rel="noopener noreferrer" class="source-button">
-                    Read original article <span>↗</span>
+                    Read original article ↗
                 </a>
             </div>
-
             <div class="article-decoration" aria-hidden="true">W</div>
         </div>
 
         <div class="content-grid">
 
             <div class="main-column">
+
                 <article class="card summary-card">
                     <div class="card-heading">
                         <span class="card-icon purple">✧</span>
@@ -217,7 +197,7 @@
                         <span class="card-icon blue">?</span>
                         <div>
                             <h2>Knowledge check</h2>
-                            <p>See what you've learned</p>
+                            <p>Test what you have learned</p>
                         </div>
                         <span class="quiz-tag">QUICK QUIZ</span>
                     </div>
@@ -242,9 +222,11 @@
                         No related articles found.
                     </div>
                 </article>
+
             </div>
 
             <aside class="side-column">
+
                 <article class="card details-card">
                     <span class="section-kicker">ARTICLE DETAILS</span>
                     <h3>At a glance</h3>
@@ -266,7 +248,7 @@
 
                     <div class="detail-row">
                         <span>🧠 Learning</span>
-                        <strong>Interactive quiz</strong>
+                        <strong>Knowledge quiz</strong>
                     </div>
                 </article>
 
@@ -277,45 +259,31 @@
                     <div class="workflow">
                         <div class="workflow-step">
                             <span class="step-number">01</span>
-                            <div>
-                                <strong>User input</strong>
-                                <p>Choose a topic</p>
-                            </div>
+                            <div><strong>User input</strong><p>Choose a topic</p></div>
                         </div>
 
                         <div class="workflow-step">
                             <span class="step-number">02</span>
-                            <div>
-                                <strong>Data retrieval</strong>
-                                <p>Find article information</p>
-                            </div>
+                            <div><strong>Data retrieval</strong><p>Find article information</p></div>
                         </div>
 
                         <div class="workflow-step">
                             <span class="step-number">03</span>
-                            <div>
-                                <strong>Data processing</strong>
-                                <p>Prepare relevant content</p>
-                            </div>
+                            <div><strong>Data processing</strong><p>Prepare relevant content</p></div>
                         </div>
 
                         <div class="workflow-step">
                             <span class="step-number">04</span>
-                            <div>
-                                <strong>Quiz generation</strong>
-                                <p>Prepare knowledge checks</p>
-                            </div>
+                            <div><strong>Quiz generation</strong><p>Prepare questions</p></div>
                         </div>
 
                         <div class="workflow-step">
                             <span class="step-number">05</span>
-                            <div>
-                                <strong>Results</strong>
-                                <p>Display your discovery</p>
-                            </div>
+                            <div><strong>Display results</strong><p>Show your discovery</p></div>
                         </div>
                     </div>
                 </article>
+
             </aside>
         </div>
     </section>
@@ -323,17 +291,35 @@
 </main>
 
 <footer class="footer">
-    <a href="/" class="footer-brand">
-        <span class="brand-icon">W</span>
-        WikiConnect
+    <a href="#" class="footer-brand">
+        <span class="brand-icon">W</span> WikiConnect
     </a>
-
     <p>Built to make knowledge easier to explore.</p>
-
     <span class="footer-note">Powered by Wikimedia content</span>
 </footer>
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="../static/script.js"></script>
+
+<script>
+    // Allow Enter to search using the existing searchArticle function.
+    document.getElementById("searchForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (typeof searchArticle === "function") {
+            searchArticle();
+        }
+    });
+
+    // Display a helpful status if the frontend is opened without Flask.
+    // Live Server cannot run Python or provide Flask API endpoints.
+    window.addEventListener("load", function () {
+        const status = document.getElementById("datasetStatus");
+
+        if (location.port === "5500" && status &&
+            status.textContent.includes("Connecting to Wikimedia dataset")) {
+            status.textContent = "Frontend preview · Flask backend not connected";
+        }
+    });
+</script>
 
 </body>
 </html>
