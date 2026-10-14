@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_FILE = os.path.join(BASE_DIR, "data", "wikimedia_dataset.csv")
+DATA_FILE = os.path.join(BASE_DIR, "Data", "wikimedia_dataset.csv")
 
 print("\n========================================")
 print("WIKICONNECT DATA CHECK")
